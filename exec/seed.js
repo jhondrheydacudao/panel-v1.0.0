@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { db } = require('../handlers/db');
-const log = new (require('cat-loggr'))();
+const CatLoggr = require('cat-loggr');
+const log = new CatLoggr();
 const readline = require('readline');
 const { v4: uuidv4 } = require('uuid');
 const config = require('../config.json');
@@ -34,9 +35,10 @@ async function seed() {
   }
 }
 
+// r.com/uNob
 async function performSeeding() {
   try {
-    const imagesIndexResponse = await axios.get('https://raw.githubusercontent.com/achul123/images_v2/refs/heads/main/seed/0.1.0-beta2.json');
+    const imagesIndexResponse = await axios.get('https://raw.githubusercontent.com/ma4z-sys/images_v2/refs/heads/main/seed/0.1.0-beta2.json');
     const imageUrls = imagesIndexResponse.data;
     let imageDataArray = [];
 
@@ -48,7 +50,7 @@ async function performSeeding() {
         imageData.Id = uuidv4();
 
       
-        log.init('seeding: ' + imageData.Name);
+        log.init('seeding: ' + imageData.Name + ' From: '+ url);
         imageDataArray.push(imageData);
       } catch (error) {
         log.error(`failed to fetch image data from ${url}: ${error}`);
