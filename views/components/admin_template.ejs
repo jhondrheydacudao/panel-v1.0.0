@@ -100,6 +100,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         /* Custom font faces */
@@ -200,6 +201,25 @@
             opacity: 0.5;
             pointer-events: auto;
         }
+
+        /* Fixed sidebar height issue */
+        .sidebar-container {
+            height: 100vh;
+            max-height: -webkit-fill-available;
+        }
+
+        /* Fixed main content positioning */
+        .main-content {
+            margin-left: 16rem; /* Match sidebar width */
+            width: calc(100% - 16rem);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -231,10 +251,10 @@
         </div>
 
         <!-- Sidebar -->
-        <aside class="backdrop-blur-lg fixed inset-y-0 left-0 z-40 transform md:translate-x-0 md:static md:h-screen md:w-64 border-r border-white/5 bg-[#141414] sidebar-transition"
+        <aside class="backdrop-blur-lg fixed inset-y-0 left-0 z-40 transform md:translate-x-0 md:static md:h-screen w-64 border-r border-white/5 bg-[#141414] sidebar-transition"
                :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
                aria-label="Sidebar">
-            <div class="flex flex-col h-full">
+            <div class="flex flex-col h-full sidebar-container">
                 <!-- Close button for mobile -->
                 <button @click="sidebarOpen = false"
                         class="md:hidden absolute top-4 right-4 text-gray-400 hover:text-white focus:outline-none"
@@ -352,7 +372,6 @@
             </div>
         </aside>
 
-
     <script>
         // Initialize Alpine.js data and handle loading state
         document.addEventListener('alpine:init', () => {
@@ -369,13 +388,13 @@
                         console.error('Error occurred:', e.error);
                         this.loading = false;
                     });
+                    
+                    // Ensure loading is set to false when page fully loads
+                    window.addEventListener('load', () => {
+                        this.loading = false;
+                    });
                 }
             }));
-        });
-
-        // Ensure loading elements are removed after page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // This will be handled by Alpine.js now
         });
 
         // Fallback for browsers without Alpine.js support
