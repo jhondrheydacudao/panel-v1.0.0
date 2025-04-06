@@ -75,7 +75,7 @@ async function setupRoutes() {
                 router.get(page.path, async (req, res) => {
                     res.render(page.template, {
                         req,
-                        name: await db.get('name') || 'HydraPanel',
+                        name: await db.get('name') || 'DracoPanel',
                         logo: await db.get('logo') || false,
                         settings: await db.get('settings')
                     });
