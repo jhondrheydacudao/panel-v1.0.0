@@ -227,41 +227,76 @@
   </div>
 </main>
 
-<!-- Configuration Modal Template -->
+<!-- Enhanced Configuration Modal -->
 <div id="configModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
   <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
     <div class="fixed inset-0 transition-opacity" aria-hidden="true">
       <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
     </div>
     <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-    <div class="inline-block align-bottom bg-gray-900 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-      <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <div class="sm:flex sm:items-start">
-          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-500/20 sm:mx-0 sm:h-10 sm:w-10">
+    <div class="inline-block align-bottom bg-gray-900 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+      <div class="px-6 pt-6 pb-4 sm:px-6 sm:pb-4">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-500/20">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+          <div class="ml-4 w-full">
             <h3 class="text-lg leading-6 font-medium text-white" id="modalTitle">Node Configuration</h3>
             <div class="mt-4">
               <p class="text-sm text-white/70 mb-4">Run this command on your node server to automatically configure it:</p>
-              <div class="relative">
-                <pre id="commandContent" class="bg-black/30 p-3 rounded-md overflow-x-auto text-sm text-emerald-400 font-mono mb-4"></pre>
-                <button onclick="copyCommand()" class="absolute top-2 right-2 p-1 rounded-md bg-white/10 hover:bg-white/20 text-white/70 hover:text-white">
+              
+              <!-- Command Box with Copy Button -->
+              <div class="relative group">
+                <pre id="commandContent" class="bg-black/30 p-4 rounded-md overflow-x-auto text-sm text-emerald-400 font-mono mb-4 whitespace-pre-wrap break-all"></pre>
+                <button onclick="copyCommand()" class="absolute top-3 right-3 p-1.5 rounded-md bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all duration-200 group-hover:opacity-100 opacity-0">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                   </svg>
                 </button>
+                <div id="copySuccess" class="absolute top-3 right-12 hidden items-center px-2 py-1 rounded-md bg-emerald-500/90 text-white text-xs">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  Copied!
+                </div>
               </div>
-              <p class="text-xs text-white/50">This command will install and configure all required components.</p>
+              
+              <!-- Configuration Details -->
+              <div class="mt-6 border-t border-white/10 pt-4">
+                <h4 class="text-sm font-medium text-white mb-3">Configuration Details</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p class="text-xs text-white/50 mb-1">Node Name</p>
+                    <p id="configNodeName" class="text-sm text-white font-mono"></p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-white/50 mb-1">Connection</p>
+                    <p id="configNodeConnection" class="text-sm text-white font-mono"></p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-white/50 mb-1">Resources</p>
+                    <p id="configNodeResources" class="text-sm text-white font-mono"></p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-white/50 mb-1">Tags</p>
+                    <p id="configNodeTags" class="text-sm text-white font-mono"></p>
+                  </div>
+                </div>
+              </div>
+              
+              <p class="mt-4 text-xs text-white/50">This command will install and configure all required components. Make sure your node server has internet access.</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+      <div class="px-6 py-4 sm:px-6 sm:flex sm:flex-row-reverse border-t border-white/10">
         <button type="button" onclick="closeModal()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-500 text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
           Done
+        </button>
+        <button type="button" onclick="copyCommand()" class="mt-3 w-full inline-flex justify-center rounded-md border border-white/10 shadow-sm px-4 py-2 bg-transparent text-base font-medium text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+          Copy Command
         </button>
       </div>
     </div>
@@ -358,7 +393,7 @@
       if (!response.ok) throw new Error('Failed to fetch configure command');
       
       const data = await response.json();
-      showConfigModal(data.configureCommand);
+      showConfigModal(data.configureCommand, data.nodeDetails);
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to get configuration command');
@@ -367,11 +402,20 @@
     }
   }
 
-  function showConfigModal(command) {
+  function showConfigModal(command, nodeDetails) {
     const modal = document.getElementById('configModal');
     const commandContent = document.getElementById('commandContent');
     
     commandContent.textContent = command;
+    
+    // Display node details if available
+    if (nodeDetails) {
+      document.getElementById('configNodeName').textContent = nodeDetails.name || 'N/A';
+      document.getElementById('configNodeConnection').textContent = `${nodeDetails.address}:${nodeDetails.port}`;
+      document.getElementById('configNodeResources').textContent = `${nodeDetails.ram}MB RAM, ${nodeDetails.disk}GB Disk`;
+      document.getElementById('configNodeTags').textContent = nodeDetails.tags || 'No tags';
+    }
+    
     modal.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
   }
@@ -384,21 +428,17 @@
   function copyCommand() {
     const command = document.getElementById('commandContent').textContent;
     navigator.clipboard.writeText(command).then(() => {
-      const copyBtn = document.querySelector('[onclick="copyCommand()"]');
-      copyBtn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-        </svg>
-      `;
+      const copySuccess = document.getElementById('copySuccess');
+      copySuccess.classList.remove('hidden');
+      copySuccess.classList.add('flex');
+      
       setTimeout(() => {
-        copyBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-          </svg>
-        `;
+        copySuccess.classList.add('hidden');
+        copySuccess.classList.remove('flex');
       }, 2000);
     }).catch(err => {
       console.error('Failed to copy command:', err);
+      alert('Failed to copy command to clipboard');
     });
   }
 
