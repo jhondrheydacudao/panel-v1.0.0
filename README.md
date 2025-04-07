@@ -41,3 +41,4 @@ git clone https://github.com/draco-labes/panel-v1.0.0.git && cd panel-v1.0.0 && 
 - Skyport (EOL)
 - SRYDEN (https://sryden.com)
 - made by **hopingboyz**
+- **subscribe our channel hopingboyz**
