@@ -1,24 +1,29 @@
+# DracoPanel  
 
-<h2> DracoPanel is an open-source panel for managing your game servers, applications, and more built with modern technologies such as Node.js, Docker, and Express - made to work with our DracoDaemon software.</h2>
+**DracoPanel** is an open-source, modern game server and application management panel built with **Node.js, Docker, and Express**. It is designed to work seamlessly with the **DracoDaemon** backend.  
 
-## Installation
-### Picking a Server OS
+![GitHub](https://img.shields.io/badge/license-MIT-blue) ![Node.js](https://img.shields.io/badge/Node.js-v20%2B-green) ![Status](https://img.shields.io/badge/status-active-brightgreen)  
 
-DracoPanel runs on various operating systems, so pick whichever you are most comfortable using.
+## Features  
+- **Game Server Management** - Easily deploy and control game servers  
+- **Docker Integration** - Containerized applications for better isolation  
+- **User-Friendly UI** - Intuitive dashboard for server administration  
+- **Multi-OS Support** - Works on Linux, Windows (limited), and macOS  
 
-| Operating System | Version |     Supported      | Notes                                                       |
-|------------------|---------|:------------------:|-------------------------------------------------------------|
-| **Ubuntu**       | 24.04   | ✅ | Documentation written assuming Ubuntu 24.04 as the OS. |
-|                  | 22.04   | ✅ |                                                             |
-| **CentOS**       | 7       | ✅ | Extra repos are required.                                   |
-|                  | 8       | ✅ | Note that CentOS 8 is EOL. Use Rocky or Alma Linux.         |
-| **Debian**       | 11      | ✅ |                                                             |
-|                  | 12      | ✅ |                                                             |
-| **Windows**      | 11      | ⚠️ | May have issues due to Windows firewall.                   |
-|                  | 10      | ⚠️ |                                                             |
-| **macOS**        | 10.15+  | ⚠️ |                                                             |
+## Installation  
 
-## Dependencies
+### 1. Choose Your Operating System  
+
+| OS         | Version  | Supported | Notes                         |
+|------------|----------|-----------|-------------------------------|
+| Ubuntu     | 24.04    | ✅ Yes    | Recommended                   |
+|            | 22.04    | ✅ Yes    |                               |
+| Debian     | 11, 12   | ✅ Yes    | Stable and well-tested        |
+| CentOS     | 7, 8     | ⚠️ Partial | CentOS 8 is EOL              |
+| Windows    | 10, 11   | ⚠️ Partial | Needs firewall adjustments   |
+| macOS      | 10.15+   | ⚠️ Partial | Not for production use       |
+
+### 2. Install Dependencies  
 
 * Node.js `v20` and higher (Nodejs `v20` recommended).
 * ### Installation Nodejs 20
@@ -38,7 +43,7 @@ To install and start the Draco Panel , run the following commands:
 git clone https://github.com/draco-labes/panel-v1.0.0.git && cd panel-v1.0.0 && npm install && npm run seed && npm run createUser && node .
 ```
 
-- Skyport (EOL)
-- SRYDEN (https://sryden.com)
-- made by **hopingboyz**
-- **POWERED BY WEBLAB**
+## Credits  
+- **Developed by**: hopingboyz  
+- **Powered by**: WebLab  
+- **Special Thanks**: SRYDEN
