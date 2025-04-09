@@ -44,6 +44,7 @@ git clone https://github.com/draco-labes/panel-v1.0.0.git && cd panel-v1.0.0 && 
 ```
 
 ## Credits  
-- **Developed by**: hopingboyz  
-- **Powered by**: WebLab  
+- **Developed by**: hopingboyz
+- **made by**: hopingboyz   
+- **Powered by**: WEBLAB  
 - **Special Thanks**: SRYDEN
